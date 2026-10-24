@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#210d20" />
+  <title>A Little Message for Veronica 💗</title>
+  <style>
+    :root {
+      --pink: #ff78ac;
+      --hot-pink: #ff438b;
+      --cream: #fff5f8;
+      --muted: #f5cbdc;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      padding: 22px;
+      color: var(--cream);
+      font-family: ui-rounded, "Segoe UI", system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(ellipse at 15% 15%, rgba(255, 93, 161, .24), transparent 35%),
+        radial-gradient(ellipse at 85% 85%, rgba(157, 76, 199, .22), transparent 34%),
+        linear-gradient(145deg, #160a1f, #35112e 55%, #160a1f);
+    }
+    .stars, .hearts-bg, #celebration {
+      position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none;
+    }
+    .stars {
+      opacity: .48;
+      background-image: radial-gradient(#fff 1px, transparent 1.5px), radial-gradient(#ffc3dc 1px, transparent 1.5px);
+      background-size: 57px 57px, 91px 91px;
+      background-position: 0 0, 25px 33px;
+      animation: twinkle 5s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle { from { opacity: .22; } to { opacity: .6; } }
+    .hearts-bg span {
+      position: absolute;
+      bottom: -50px;
+      color: rgba(255, 120, 172, .28);
+      animation: floatUp linear infinite;
+      user-select: none;
+    }
+    @keyframes floatUp {
+      from { transform: translateY(0) rotate(0deg); opacity: 0; }
+      12% { opacity: 1; }
+      90% { opacity: .7; }
+      to { transform: translateY(-115vh) rotate(25deg); opacity: 0; }
+    }
+    .card {
+      position: relative;
+      z-index: 2;
+      width: min(100%, 520px);
+      padding: clamp(28px, 6vw, 46px) clamp(22px, 6vw, 42px) 32px;
+      text-align: center;
+      border: 1px solid rgba(255, 211, 230, .25);
+      border-radius: 30px;
+      background: linear-gradient(155deg, rgba(255,255,255,.12), rgba(255,255,255,.055));
+      box-shadow: 0 25px 90px rgba(0,0,0,.36), inset 0 1px rgba(255,255,255,.13);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      animation: arrive .8s cubic-bezier(.2,.8,.2,1) both;
+    }
+    @keyframes arrive { from { opacity: 0; transform: translateY(18px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .heart-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 82px; height: 82px;
+      margin-bottom: 10px;
+      border-radius: 50%;
+      font-size: 39px;
+      background: linear-gradient(145deg, rgba(255, 120, 172, .25), rgba(255, 67, 139, .09));
+      border: 1px solid rgba(255, 180, 211, .28);
+      box-shadow: 0 0 42px rgba(255, 67, 139, .15);
+      animation: heartbeat 1.7s ease-in-out infinite;
+    }
+    @keyframes heartbeat { 0%, 100% { transform: scale(1); } 12% { transform: scale(1.07); } 24% { transform: scale(1); } 36% { transform: scale(1.04); } }
+    .eyebrow {
+      margin: 0 0 12px;
+      color: #ffb7d3;
+      font-size: .75rem;
+      letter-spacing: .22em;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 8vw, 3.15rem);
+      line-height: 1.06;
+      letter-spacing: -.045em;
+      font-weight: 850;
+    }
+    h1 .name { color: #ff91ba; text-shadow: 0 0 24px rgba(255, 67, 139, .2); }
+    .message {
+      margin: 20px auto 0;
+      max-width: 370px;
+      color: var(--muted);
+      font-size: clamp(1rem, 3.5vw, 1.08rem);
+      line-height: 1.75;
+    }
+    .question {
+      margin: 25px 0 6px;
+      font-size: clamp(1.2rem, 4.8vw, 1.55rem);
+      font-weight: 750;
+    }
+    .button-area {
+      position: relative;
+      width: min(100%, 370px);
+      height: 94px;
+      margin: 8px auto 0;
+    }
+    .choice {
+      position: absolute;
+      top: 18px;
+      min-width: 112px;
+      padding: 13px 22px;
+      border: 0;
+      border-radius: 999px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 800;
+      font-size: 1rem;
+      touch-action: manipulation;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    #yesBtn {
+      left: calc(50% - 125px);
+      color: #47102f;
+      background: linear-gradient(135deg, #ffd0e2, #ff83b2);
+      box-shadow: 0 8px 24px rgba(255, 76, 143, .28);
+    }
+    #yesBtn:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 12px 30px rgba(255, 76, 143, .38); }
+    #noBtn {
+      left: calc(50% + 14px);
+      color: #fff3f8;
+      border: 1px solid rgba(255,255,255,.24);
+      background: rgba(255,255,255,.09);
+      white-space: nowrap;
+    }
+    #noBtn:hover { background: rgba(255,255,255,.14); }
+    .tiny-note { min-height: 22px; margin: 2px 0 0; color: #e8bed1; font-size: .78rem; }
+    .footer { margin: 18px 0 0; color: rgba(255,235,244,.56); font-size: .75rem; }
+    .success { display: none; }
+    .card.accepted .normal { display: none; }
+    .card.accepted .success { display: block; animation: arrive .5s ease both; }
+    .card.accepted .heart-icon { animation: happyBeat .55s ease-in-out infinite alternate; }
+    @keyframes happyBeat { to { transform: scale(1.16) rotate(7deg); } }
+    .success h1 { color: #ffd0e2; }
+    .signature { margin-top: 21px; color: #ffb5d1; font-weight: 800; }
+    .again { margin-top: 18px; padding: 10px 17px; border: 1px solid rgba(255,255,255,.23); border-radius: 999px; background: rgba(255,255,255,.09); color: white; font: inherit; cursor: pointer; }
+    @media (max-width: 390px) {
+      .card { padding-inline: 19px; }
+      .choice { min-width: 100px; padding: 12px 17px; }
+      #yesBtn { left: calc(50% - 115px); }
+      #noBtn { left: calc(50% + 5px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+  <div class="hearts-bg" id="heartsBg" aria-hidden="true"></div>
+  <canvas id="celebration" aria-hidden="true"></canvas>
+
+  <main class="card" id="card">
+    <div class="heart-icon" id="heartIcon" aria-hidden="true">💗</div>
+    <section class="normal" id="normalContent">
+      <p class="eyebrow">A little message from my heart</p>
+      <h1>Hi, <span class="name">Veronica</span> 🥺</h1>
+      <p class="message">I'm Billy, and I know things haven't been perfect. I'm sorry for my part in what happened. You matter to me, and I'd really appreciate a chance to make things better.</p>
+      <p class="question">Will you forgive me? 💌</p>
+      <div class="button-area" id="buttonArea">
+        <button class="choice" id="yesBtn" type="button">Yes 💖</button>
+        <button class="choice" id="noBtn" type="button">No 🙈</button>
+      </div>
+      <p class="tiny-note" id="tinyNote" aria-live="polite"></p>
+      <p class="footer">Made with hope, from Billy ❤️</p>
+    </section>
+    <section class="success" id="successContent" aria-live="polite">
+      <p class="eyebrow">My heart is smiling</p>
+      <h1>Yaaay, Veronica! 🎉</h1>
+      <p class="message">Thank you for giving me a chance. ❤️ I'll do my best to listen, learn from my mistakes, and treat your feelings with care. One step at a time. 💕</p>
+      <div style="font-size:2.2rem; margin-top:18px" aria-hidden="true">🥹💖🥳</div>
+      <p class="signature">With love, Billy</p>
+      <button class="again" id="againBtn" type="button">Watch the fireworks again ✨</button>
+      <p class="footer">A new chapter starts with kindness.</p>
+    </section>
+  </main>
+
+  <script>
+    // Gentle floating hearts in the background.
+    const heartsBg = document.getElementById('heartsBg');
+    const heartSymbols = ['♡', '♥', '💕', '✧'];
+    for (let i = 0; i < 17; i++) {
+      const heart = document.createElement('span');
+      heart.textContent = heartSymbols[i % heartSymbols.length];
+      heart.style.left = (Math.random() * 100) + '%';
+      heart.style.fontSize = (14 + Math.random() * 24) + 'px';
+      heart.style.animationDuration = (10 + Math.random() * 13) + 's';
+      heart.style.animationDelay = (-Math.random() * 20) + 's';
+      heartsBg.appendChild(heart);
+    }
+
+    // The playful "No" button dodges the pointer/touch but remains part of the joke.
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const area = document.getElementById('buttonArea');
+    const tinyNote = document.getElementById('tinyNote');
+    const funnyLabels = ['No 🙈', 'Hehe, missed! 😅', 'Almost! 🏃', 'Try again? 🥹', 'That button is shy 💨'];
+    let dodgeCount = 0;
+    function dodgeNoButton() {
+      const areaRect = area.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+      const maxX = Math.max(0, areaRect.width - btnRect.width);
+      const maxY = Math.max(0, areaRect.height - btnRect.height);
+      const currentX = parseFloat(noBtn.style.left) || (noBtn.offsetLeft);
+      const currentY = parseFloat(noBtn.style.top) || 18;
+      let x = Math.random() * maxX;
+      let y = Math.random() * maxY;
+      // Try to keep it away from the Yes button.
+      const yesRect = yesBtn.getBoundingClientRect();
+      for (let tries = 0; tries < 12; tries++) {
+        x = Math.random() * maxX;
+        y = Math.random() * maxY;
+        const proposed = { left: areaRect.left + x, right: areaRect.left + x + btnRect.width, top: areaRect.top + y, bottom: areaRect.top + y + btnRect.height };
+        const overlaps = !(proposed.right < yesRect.left - 8 || proposed.left > yesRect.right + 8 || proposed.bottom < yesRect.top - 8 || proposed.top > yesRect.bottom + 8);
+        if (!overlaps) break;
+      }
+      noBtn.style.left = x + 'px';
+      noBtn.style.top = y + 'px';
+      noBtn.style.transform = 'rotate(' + (Math.random() * 12 - 6) + 'deg)';
+      dodgeCount++;
+      noBtn.textContent = funnyLabels[Math.min(dodgeCount, funnyLabels.length - 1)];
+      tinyNote.textContent = dodgeCount >= 3 ? 'Okay, okay 😅 The No button is shy. Your feelings still matter. ❤️' : 'Hehe… that button is a little shy 😅';
+    }
+    noBtn.addEventListener('pointerenter', dodgeNoButton);
+    noBtn.addEventListener('pointerdown', (event) => { event.preventDefault(); dodgeNoButton(); });
+    noBtn.addEventListener('click', (event) => { event.preventDefault(); dodgeNoButton(); });
+
+    // Fireworks/confetti canvas.
+    const canvas = document.getElementById('celebration');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let animationId = null;
+    let celebratingUntil = 0;
+    function resizeCanvas() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    function burst(x, y) {
+      const palette = ['#ff5c9a', '#ffd166', '#ffffff', '#b8f2e6', '#cdb4ff', '#ff9f1c', '#ffcad4'];
+      const count = 75;
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 1.4 + Math.random() * 5.5;
+        particles.push({
+          x, y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          gravity: .035 + Math.random() * .055,
+          life: 65 + Math.random() * 50,
+          maxLife: 115,
+          size: 1.7 + Math.random() * 3.2,
+          color: palette[Math.floor(Math.random() * palette.length)],
+          rotation: Math.random() * Math.PI,
+          spin: (Math.random() - .5) * .15,
+          shape: Math.random() > .45 ? 'circle' : 'rect'
+        });
+      }
+    }
+    function animateFireworks(now) {
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      particles = particles.filter(p => p.life > 0);
+      for (const p of particles) {
+        p.x += p.vx; p.y += p.vy; p.vy += p.gravity;
+        p.vx *= .991; p.vy *= .991; p.life--; p.rotation += p.spin;
+        ctx.globalAlpha = Math.max(0, Math.min(1, p.life / 38));
+        ctx.fillStyle = p.color;
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rotation);
+        if (p.shape === 'rect') ctx.fillRect(-p.size, -p.size * .55, p.size * 2.2, p.size * 1.1);
+        else { ctx.beginPath(); ctx.arc(0, 0, p.size, 0, Math.PI * 2); ctx.fill(); }
+        ctx.restore();
+      }
+      ctx.globalAlpha = 1;
+      if (now < celebratingUntil || particles.length > 0) {
+        if (now < celebratingUntil && Math.random() < .12) burst(Math.random() * window.innerWidth, Math.random() * window.innerHeight * .65);
+        animationId = requestAnimationFrame(animateFireworks);
+      } else {
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        animationId = null;
+      }
+    }
+    function startCelebration() {
+      particles = [];
+      celebratingUntil = performance.now() + 4300;
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => burst(window.innerWidth * (.12 + Math.random() * .76), window.innerHeight * (.12 + Math.random() * .47)), i * 300);
+      }
+      if (!animationId) animationId = requestAnimationFrame(animateFireworks);
+    }
+    yesBtn.addEventListener('click', () => {
+      document.getElementById('card').classList.add('accepted');
+      document.getElementById('heartIcon').textContent = '💖';
+      startCelebration();
+    });
+    document.getElementById('againBtn').addEventListener('click', startCelebration);
+  </script>
+</body>
+</html>
